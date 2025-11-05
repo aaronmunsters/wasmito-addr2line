@@ -1,0 +1,27 @@
+
+[package]
+name = "wasmito-addr2line"
+version = "0.1.0"
+edition = "2024"
+
+description = "A crate to generate source mappings, focussing on JS availability"
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/aaronmunsters/wasmito-addr2line"
+readme = "README.md"
+keywords = ["wasm", "dwarf", "source-mappings"]
+categories = [
+    "development-tools::debugging",
+    "wasm",
+    "web-programming",
+    "compilers",
+    "encoding",
+]
+
+[dependencies]
+thiserror = { version = "2" }
+wasm-tools = { version = "1.240.0" }
+wat = { version = "1.240.0", features = ["dwarf"] }
+wasmparser = "0.240.0"
+
+[dependencies.addr2line] # locked to that of `wat`, to ensure equal type
+version = "0.24.2"

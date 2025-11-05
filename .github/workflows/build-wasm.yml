@@ -25,7 +25,7 @@ jobs:
       run: cargo binstall wasm-pack --no-confirm
     
     - name: Build with wasm-pack
-      run: wasm-pack build --target nodejs --dev --no-opt
+      run: bash ./package.sh
     
     - name: Verify build output
       run: |

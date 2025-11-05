@@ -1,0 +1,27 @@
+[package]
+name = "wasmito-addr2line-bindings"
+version = "0.1.0"
+edition = "2024"
+
+description = "A JS available crate to generate source mappings, focussing on JS availability"
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/aaronmunsters/wasmito-addr2line"
+readme = "README.md"
+keywords = ["wasm", "dwarf", "source-mappings"]
+categories = [
+    "development-tools::debugging",
+    "wasm",
+    "web-programming",
+    "compilers",
+    "encoding",
+]
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+wasm-bindgen = "0.2"
+wasmito-addr2line = { path = "../wasmito-addr2line" }
+
+[dependencies.getrandom]
+version = "0.3.4" # Included to register custom `rand` hook cf. `lib.rs`
