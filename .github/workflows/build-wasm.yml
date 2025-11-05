@@ -50,14 +50,22 @@ jobs:
         fs.writeFileSync('package.json', JSON.stringify(pkg, null, 2));
         "
     
-    - name: Deploy to pkg branch
-      uses: peaceiris/actions-gh-pages@v3
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./pkg
-        publish_branch: refs/heads/pkg
-        keep_files: false
-        force_orphan: true
-        user_name: 'github-actions[bot]'
-        user_email: 'github-actions[bot]@users.noreply.github.com'
-        commit_message: 'Deploy WASM package from ${{ github.sha }}'
+    - name: Deploy pkg contents to pkg branch
+      run: |
+        echo "Deploying pkg directory to branch pkg..."
+
+        # Initialize a temporary worktree for the pkg branch
+        git fetch origin pkg || true
+        git worktree add /tmp/pkg-branch pkg || git worktree add /tmp/pkg-branch -b pkg
+
+        # Clear it out and copy new contents
+        rm -rf /tmp/pkg-branch/*
+        cp -r pkg/* /tmp/pkg-branch/
+
+        cd /tmp/pkg-branch
+        git add -A
+        git -c user.name='github-actions[bot]' -c user.email='github-actions[bot]@users.noreply.github.com' \
+            commit -m "Deploy WASM package from ${GITHUB_SHA}" || echo "No changes to commit"
+
+        # Force-push to pkg branch
+        git push origin HEAD:pkg --force
