@@ -55,9 +55,9 @@ jobs:
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: ./pkg
-        publish_branch: pkg
+        publish_branch: refs/heads/pkg
         keep_files: false
-        force_orphan: true  # Keep pkg branch clean without history
+        force_orphan: true
         user_name: 'github-actions[bot]'
         user_email: 'github-actions[bot]@users.noreply.github.com'
         commit_message: 'Deploy WASM package from ${{ github.sha }}'
