@@ -75,7 +75,8 @@ impl Location {
 }
 
 #[wasm_bindgen]
-#[derive(Debug)]
+#[derive(Debug, thiserror::Error)]
+#[error("ParseError({0})")]
 pub struct ParseError(wasmito_addr2line::error::WatParseError);
 
 #[wasm_bindgen]
@@ -89,6 +90,8 @@ impl ParseError {
 }
 
 #[wasm_bindgen]
+#[derive(Debug, thiserror::Error)]
+#[error("ParseError({0})")]
 pub struct Addr2lineError(wasmito_addr2line::error::Error);
 
 #[wasm_bindgen]
@@ -132,7 +135,7 @@ impl Module {
     /// # Errors
     /// In the case mapping fails, cf. <Error> on retrieving the error info.
     #[wasm_bindgen]
-    pub fn addr2line(self, byte_offset: u64) -> Result<Location, Addr2lineError> {
+    pub fn addr2line(&self, byte_offset: u64) -> Result<Location, Addr2lineError> {
         let Self(module) = self;
         module
             .addr2line(byte_offset)
@@ -143,7 +146,7 @@ impl Module {
     /// # Errors
     /// In the case mapping fails, cf. <Error> on retrieving the error info.
     #[wasm_bindgen]
-    pub fn addr2line_mappings(self) -> Result<Vec<Mapping>, Addr2lineError> {
+    pub fn addr2line_mappings(&self) -> Result<Vec<Mapping>, Addr2lineError> {
         let Self(module) = self;
         let mappings = module.mappings().map_err(Addr2lineError)?;
         Ok(mappings.into_iter().map(Mapping).collect())

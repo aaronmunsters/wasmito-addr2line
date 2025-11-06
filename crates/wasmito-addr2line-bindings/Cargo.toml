@@ -22,6 +22,10 @@ crate-type = ["cdylib", "rlib"]
 [dependencies]
 wasm-bindgen = "0.2"
 wasmito-addr2line = { path = "../wasmito-addr2line" }
+thiserror = { version = "2" }
 
 [dependencies.getrandom]
 version = "0.3.4" # Included to register custom `rand` hook cf. `lib.rs`
+
+[dev-dependencies]
+anyhow = { version = "1" }
