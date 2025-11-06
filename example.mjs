@@ -1,6 +1,6 @@
 // replace "./pgk/..." with "wasmito-addr2line" after
 // installing through `npm install github:aaronmunsters/wasmito-addr2line#pkg`
-import { Module } from "./pkg/wasmito_addr2line.js";
+import { Module } from "./pkg/wasmito-addr2line.js";
 
 const path = undefined;
 const module = Module.from_wat(
