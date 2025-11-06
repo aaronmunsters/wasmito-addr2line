@@ -1,12 +1,12 @@
 /* tslint:disable */
 /* eslint-disable */
 export const __getrandom_v03_custom: (a: number, b: number) => number;
-export const __wbg_error_free: (a: number, b: number) => void;
+export const __wbg_addr2lineerror_free: (a: number, b: number) => void;
 export const __wbg_location_free: (a: number, b: number) => void;
 export const __wbg_mapping_free: (a: number, b: number) => void;
 export const __wbg_module_free: (a: number, b: number) => void;
 export const __wbg_parseerror_free: (a: number, b: number) => void;
-export const error_context: (a: number) => [number, number];
+export const addr2lineerror_context: (a: number) => [number, number];
 export const location_column: (a: number) => number;
 export const location_file: (a: number) => [number, number];
 export const location_line: (a: number) => number;

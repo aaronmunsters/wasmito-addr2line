@@ -1,6 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
-export class Error {
+export class Addr2lineError {
   private constructor();
   free(): void;
   [Symbol.dispose](): void;

@@ -146,11 +146,11 @@ function _assertBigInt(n) {
     if (typeof(n) !== 'bigint') throw new Error(`expected a bigint argument, found ${typeof(n)}`);
 }
 
-const ErrorFinalization = (typeof FinalizationRegistry === 'undefined')
+const Addr2lineErrorFinalization = (typeof FinalizationRegistry === 'undefined')
     ? { register: () => {}, unregister: () => {} }
-    : new FinalizationRegistry(ptr => wasm.__wbg_error_free(ptr >>> 0, 1));
+    : new FinalizationRegistry(ptr => wasm.__wbg_addr2lineerror_free(ptr >>> 0, 1));
 
-class Error {
+class Addr2lineError {
 
     constructor() {
         throw new Error('cannot invoke `new` directly');
@@ -158,22 +158,22 @@ class Error {
 
     static __wrap(ptr) {
         ptr = ptr >>> 0;
-        const obj = Object.create(Error.prototype);
+        const obj = Object.create(Addr2lineError.prototype);
         obj.__wbg_ptr = ptr;
-        ErrorFinalization.register(obj, obj.__wbg_ptr, obj);
+        Addr2lineErrorFinalization.register(obj, obj.__wbg_ptr, obj);
         return obj;
     }
 
     __destroy_into_raw() {
         const ptr = this.__wbg_ptr;
         this.__wbg_ptr = 0;
-        ErrorFinalization.unregister(this);
+        Addr2lineErrorFinalization.unregister(this);
         return ptr;
     }
 
     free() {
         const ptr = this.__destroy_into_raw();
-        wasm.__wbg_error_free(ptr, 0);
+        wasm.__wbg_addr2lineerror_free(ptr, 0);
     }
     /**
      * @returns {string}
@@ -184,7 +184,7 @@ class Error {
         try {
             if (this.__wbg_ptr == 0) throw new Error('Attempt to use a moved value');
             _assertNum(this.__wbg_ptr);
-            const ret = wasm.error_context(this.__wbg_ptr);
+            const ret = wasm.addr2lineerror_context(this.__wbg_ptr);
             deferred1_0 = ret[0];
             deferred1_1 = ret[1];
             return getStringFromWasm0(ret[0], ret[1]);
@@ -193,9 +193,9 @@ class Error {
         }
     }
 }
-if (Symbol.dispose) Error.prototype[Symbol.dispose] = Error.prototype.free;
+if (Symbol.dispose) Addr2lineError.prototype[Symbol.dispose] = Addr2lineError.prototype.free;
 
-exports.Error = Error;
+exports.Addr2lineError = Addr2lineError;
 
 const LocationFinalization = (typeof FinalizationRegistry === 'undefined')
     ? { register: () => {}, unregister: () => {} }
@@ -379,9 +379,8 @@ class Module {
      */
     addr2line_mappings() {
         if (this.__wbg_ptr == 0) throw new Error('Attempt to use a moved value');
-        const ptr = this.__destroy_into_raw();
-        _assertNum(ptr);
-        const ret = wasm.module_addr2line_mappings(ptr);
+        _assertNum(this.__wbg_ptr);
+        const ret = wasm.module_addr2line_mappings(this.__wbg_ptr);
         if (ret[3]) {
             throw takeFromExternrefTable0(ret[2]);
         }
@@ -437,10 +436,9 @@ class Module {
      */
     addr2line(byte_offset) {
         if (this.__wbg_ptr == 0) throw new Error('Attempt to use a moved value');
-        const ptr = this.__destroy_into_raw();
-        _assertNum(ptr);
+        _assertNum(this.__wbg_ptr);
         _assertBigInt(byte_offset);
-        const ret = wasm.module_addr2line(ptr, byte_offset);
+        const ret = wasm.module_addr2line(this.__wbg_ptr, byte_offset);
         if (ret[2]) {
             throw takeFromExternrefTable0(ret[1]);
         }
@@ -506,8 +504,8 @@ exports.__wbg___wbindgen_throw_b855445ff6a94295 = function(arg0, arg1) {
     throw new Error(getStringFromWasm0(arg0, arg1));
 };
 
-exports.__wbg_error_new = function() { return logError(function (arg0) {
-    const ret = Error.__wrap(arg0);
+exports.__wbg_addr2lineerror_new = function() { return logError(function (arg0) {
+    const ret = Addr2lineError.__wrap(arg0);
     return ret;
 }, arguments) };
 
