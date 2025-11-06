@@ -30,9 +30,20 @@ export class Module {
   /**
    * # Errors
    * In the case mapping fails, cf. <Error> on retrieving the error info.
+   *
+   * # Note
+   * Cache successive calls to this method, its result does not change.
    */
   addr2line_mappings(): Mapping[];
   constructor(bytes: Uint8Array);
+  /**
+   * # Errors
+   * In the case mapping fails, cf. <Error> on retrieving the error info.
+   *
+   * # Note
+   * Cache successive calls to this method, its result does not change.
+   */
+  files(): string[];
   /**
    * # Errors
    * In the case parsing fails, cf. <Error> on retrieving the error info.
@@ -41,6 +52,9 @@ export class Module {
   /**
    * # Errors
    * In the case mapping fails, cf. <Error> on retrieving the error info.
+   *
+   * # Note
+   * Cache successive calls to this method, its result does not change.
    */
   addr2line(byte_offset: bigint): Location;
   readonly bytes: Uint8Array;

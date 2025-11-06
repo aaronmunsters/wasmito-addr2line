@@ -375,6 +375,9 @@ class Module {
     /**
      * # Errors
      * In the case mapping fails, cf. <Error> on retrieving the error info.
+     *
+     * # Note
+     * Cache successive calls to this method, its result does not change.
      * @returns {Mapping[]}
      */
     addr2line_mappings() {
@@ -412,6 +415,25 @@ class Module {
     }
     /**
      * # Errors
+     * In the case mapping fails, cf. <Error> on retrieving the error info.
+     *
+     * # Note
+     * Cache successive calls to this method, its result does not change.
+     * @returns {string[]}
+     */
+    files() {
+        if (this.__wbg_ptr == 0) throw new Error('Attempt to use a moved value');
+        _assertNum(this.__wbg_ptr);
+        const ret = wasm.module_files(this.__wbg_ptr);
+        if (ret[3]) {
+            throw takeFromExternrefTable0(ret[2]);
+        }
+        var v1 = getArrayJsValueFromWasm0(ret[0], ret[1]).slice();
+        wasm.__wbindgen_free(ret[0], ret[1] * 4, 4);
+        return v1;
+    }
+    /**
+     * # Errors
      * In the case parsing fails, cf. <Error> on retrieving the error info.
      * @param {string | null | undefined} path
      * @param {string} wat
@@ -431,6 +453,9 @@ class Module {
     /**
      * # Errors
      * In the case mapping fails, cf. <Error> on retrieving the error info.
+     *
+     * # Note
+     * Cache successive calls to this method, its result does not change.
      * @param {bigint} byte_offset
      * @returns {Location}
      */
@@ -516,6 +541,12 @@ exports.__wbg_mapping_new = function() { return logError(function (arg0) {
 
 exports.__wbg_parseerror_new = function() { return logError(function (arg0) {
     const ret = ParseError.__wrap(arg0);
+    return ret;
+}, arguments) };
+
+exports.__wbindgen_cast_2241b6af4c4b2941 = function() { return logError(function (arg0, arg1) {
+    // Cast intrinsic for `Ref(String) -> Externref`.
+    const ret = getStringFromWasm0(arg0, arg1);
     return ret;
 }, arguments) };
 

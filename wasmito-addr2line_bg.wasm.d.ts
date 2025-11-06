@@ -18,6 +18,7 @@ export const mapping_range_size: (a: number) => bigint;
 export const module_addr2line: (a: number, b: bigint) => [number, number, number];
 export const module_addr2line_mappings: (a: number) => [number, number, number, number];
 export const module_bytes: (a: number) => [number, number];
+export const module_files: (a: number) => [number, number, number, number];
 export const module_from_wat: (a: number, b: number, c: number, d: number) => [number, number, number];
 export const module_new: (a: number, b: number) => number;
 export const parseerror_context: (a: number) => [number, number];
