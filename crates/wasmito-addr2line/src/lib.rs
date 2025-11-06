@@ -1,3 +1,4 @@
+use std::collections::HashSet as Set;
 use std::path::Path;
 
 use addr2line::Location as Addr2LineLocation;
@@ -134,6 +135,19 @@ impl Module {
         }
 
         Ok(mappings)
+    }
+
+    /// Retrieves the source files that were used during compilation.
+    ///
+    /// # Errors
+    /// In the case parsing fails, cf. <Error> on retrieving the error info.
+    pub fn files(&self) -> Result<Set<String>, error::Error> {
+        let mappings = self.mappings()?;
+        let files = mappings
+            .into_iter()
+            .filter_map(|mapping| mapping.location.file)
+            .collect();
+        Ok(files)
     }
 
     fn determine_code_section_size(&self) -> Result<CodeSectionInformation, error::Error> {

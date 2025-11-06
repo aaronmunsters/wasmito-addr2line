@@ -151,6 +151,17 @@ impl Module {
         let mappings = module.mappings().map_err(Addr2lineError)?;
         Ok(mappings.into_iter().map(Mapping).collect())
     }
+
+    /// # Errors
+    /// In the case mapping fails, cf. <Error> on retrieving the error info.
+    #[wasm_bindgen]
+    pub fn files(&self) -> Result<Vec<String>, Addr2lineError> {
+        let Self(module) = self;
+        module
+            .files()
+            .map(|files| files.into_iter().collect())
+            .map_err(Addr2lineError)
+    }
 }
 
 // Registration for `getrandom` crate to compile to wasm32-unknown-unknown
