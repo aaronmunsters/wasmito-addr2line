@@ -3,7 +3,7 @@
 import { Module, StripConfig } from "./pkg/wasmito-addr2line.js";
 
 const path = undefined;
-const module = Module.from_wat(
+const wasm_module = Module.from_wat(
   path,
   `
 (module
@@ -25,10 +25,10 @@ const module = Module.from_wat(
 
 const wasm_magic_bytes = [0x00, 0x61, 0x73, 0x6D];
 for (let index; index < 4; index++) {
-  console.assert(module.bytes[index] === wasm_magic_bytes[index]);
+  console.assert(wasm_module.bytes[index] === wasm_magic_bytes[index]);
 }
 
-const mappings = module.addr2line_mappings();
+const mappings = wasm_module.addr2line_mappings();
 
 console.assert(mappings[5].address === BigInt(56));
 console.assert(mappings[5].range_size === BigInt(1));
@@ -36,6 +36,6 @@ console.assert(mappings[5].file === "./<input>.wat");
 console.assert(mappings[5].line === 11);
 console.assert(mappings[5].column === 5);
 
-const module_including_dwarf = module;
+const module_including_dwarf = wasm_module;
 const stripped = new StripConfig(true, []).strip(module_including_dwarf.bytes);
 console.assert(stripped.length < module_including_dwarf.bytes.length);
