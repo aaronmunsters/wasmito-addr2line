@@ -166,10 +166,7 @@ impl Module {
         let parser = wasmparser::Parser::new(0);
 
         for payload in parser.parse_all(module) {
-            let payload = match payload {
-                Ok(payload) => payload,
-                Err(reason) => return Err(error::Error::Wasmparser(reason.to_string())),
-            };
+            let payload = payload.map_err(|reason| error::Error::Wasmparser(reason.to_string()))?;
 
             if let wasmparser::Payload::CodeSectionStart { size, range, .. } = payload {
                 let info = CodeSectionInformation {
