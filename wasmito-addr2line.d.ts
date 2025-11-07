@@ -79,4 +79,5 @@ export class StripError {
   private constructor();
   free(): void;
   [Symbol.dispose](): void;
+  readonly context: string;
 }

@@ -695,6 +695,23 @@ class StripError {
         const ptr = this.__destroy_into_raw();
         wasm.__wbg_striperror_free(ptr, 0);
     }
+    /**
+     * @returns {string}
+     */
+    get context() {
+        let deferred1_0;
+        let deferred1_1;
+        try {
+            if (this.__wbg_ptr == 0) throw new Error('Attempt to use a moved value');
+            _assertNum(this.__wbg_ptr);
+            const ret = wasm.striperror_context(this.__wbg_ptr);
+            deferred1_0 = ret[0];
+            deferred1_1 = ret[1];
+            return getStringFromWasm0(ret[0], ret[1]);
+        } finally {
+            wasm.__wbindgen_free(deferred1_0, deferred1_1, 1);
+        }
+    }
 }
 if (Symbol.dispose) StripError.prototype[Symbol.dispose] = StripError.prototype.free;
 

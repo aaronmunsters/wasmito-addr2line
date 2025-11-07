@@ -26,6 +26,7 @@ export const module_new: (a: number, b: number) => number;
 export const parseerror_context: (a: number) => [number, number];
 export const stripconfig_new: (a: number, b: number, c: number) => number;
 export const stripconfig_strip: (a: number, b: number, c: number) => [number, number, number, number];
+export const striperror_context: (a: number) => [number, number];
 export const memory: WebAssembly.Memory;
 export const __wbindgen_malloc: (a: number, b: number) => number;
 export const __wbindgen_realloc: (a: number, b: number, c: number, d: number) => number;
