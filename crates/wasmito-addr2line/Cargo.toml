@@ -25,3 +25,6 @@ wasmparser = "0.240.0"
 
 [dependencies.addr2line] # locked to that of `wat`, to ensure equal type
 version = "0.24.2"
+
+[dev-dependencies]
+anyhow = { version = "1" }

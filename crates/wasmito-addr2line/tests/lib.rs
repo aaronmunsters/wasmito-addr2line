@@ -1,13 +1,8 @@
+use anyhow::Result;
 use wasmito_addr2line::Module;
 
-#[derive(Debug)]
-enum Error {
-    Wat,
-    Gen,
-}
-
 #[test]
-fn fast_addresses_work() -> Result<(), Error> {
+fn fast_addresses_work() -> Result<()> {
     const WAT: &str = r#"
       (module
         (import "even" "even" (func $even (param i32) (result i32)))
@@ -25,8 +20,8 @@ fn fast_addresses_work() -> Result<(), Error> {
           call $even))
     "#;
 
-    let mapped_module = Module::from_wat(None, WAT).map_err(|_| Error::Wat)?;
-    let mapping = mapped_module.mappings().map_err(|_| Error::Gen)?;
+    let mapped_module = Module::from_wat(None, WAT)?;
+    let mapping = mapped_module.mappings()?;
     let target = &mapping[5];
 
     assert_eq!(target.address, 56);
