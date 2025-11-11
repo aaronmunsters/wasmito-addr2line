@@ -50,6 +50,8 @@ jobs:
         uses: denoland/setup-deno@v1
         with:
           deno-version: v2.1.5
+      - name: Install wasm-tools
+        run: cargo install wasm-tools
       - name: Build all targets with all features
         run: cargo build
         shell: bash
