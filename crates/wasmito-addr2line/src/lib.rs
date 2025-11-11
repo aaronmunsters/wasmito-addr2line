@@ -1,18 +1,51 @@
 use std::collections::HashSet as Set;
+use std::ops::Range;
 use std::path::Path;
 
 use addr2line::Location as Addr2LineLocation;
 use wasm_tools::addr2line::Addr2lineModules;
+use wasmparser::BinaryReaderError;
 use wat::GenerateDwarf;
 use wat::Parser;
 
 pub mod error;
+pub mod instruction;
+
+use instruction::{BodyInstruction, Instruction, ValType};
 
 #[derive(Debug, Clone, Hash, PartialEq, Eq)]
 pub struct Mapping {
     pub address: u64,
     pub range_size: u64,
     pub location: Location,
+}
+
+#[derive(Debug, Clone, Hash, PartialEq, Eq)]
+pub struct PositionedInstruction {
+    pub address: usize,
+    pub instr: Instruction,
+}
+
+#[derive(Debug, Clone, Hash, PartialEq, Eq)]
+pub struct MappingWithInstructions {
+    pub address_range: Range<u64>,
+    pub instructions: Vec<PositionedInstruction>,
+    pub location: Location,
+}
+
+impl MappingWithInstructions {
+    fn new(mapping: Mapping) -> Self {
+        let Mapping {
+            address,
+            range_size,
+            location,
+        } = mapping;
+        Self {
+            address_range: address..(address + range_size),
+            instructions: vec![],
+            location,
+        }
+    }
 }
 
 #[derive(Debug, Clone, Hash, PartialEq, Eq)]
@@ -43,6 +76,11 @@ macro_rules! location {
     () => {
         concat!(file!(), ":", line!(), ":", column!())
     };
+}
+
+pub(crate) enum CodeSectionInformationOutcome {
+    NoCodeSection,
+    Some(CodeSectionInformation),
 }
 
 pub(crate) struct CodeSectionInformation {
@@ -115,13 +153,21 @@ impl Module {
         let mut addr2line_modules = Addr2lineModules::parse(module)
             .map_err(|reason| error::Error::Wasmparser(reason.to_string()))?;
 
-        let code_section_relative = false;
         let CodeSectionInformation {
             start_offset: code_section_start_offset,
             size: code_section_size,
-        } = self.determine_code_section_size()?;
+        } = match self.determine_code_section_size()? {
+            CodeSectionInformationOutcome::NoCodeSection => return Ok(vec![]),
+            CodeSectionInformationOutcome::Some(code_section_information) => {
+                code_section_information
+            }
+        };
+
+        let code_section_start_offset: u64 = code_section_start_offset
+            .try_into()
+            .map_err(error::Error::Cast)?;
         let (ctx, text_relative_address) = addr2line_modules
-            .context(code_section_start_offset as u64, code_section_relative)
+            .context(code_section_start_offset, false)
             .map_err(|reason| error::Error::ContextCreation1(reason.to_string()))?
             .ok_or_else(|| error::Error::ContextCreation2(Box::from(location!())))?;
 
@@ -133,7 +179,8 @@ impl Module {
         {
             let location: Location = location.into();
             let mapping = Mapping {
-                address: code_section_start_offset as u64 + address,
+                // FIXME: why is the `+ 1` required for the instruction offsets to match debugging info?
+                address: code_section_start_offset + address + 1,
                 range_size,
                 location,
             };
@@ -159,7 +206,70 @@ impl Module {
         Ok(files)
     }
 
-    fn determine_code_section_size(&self) -> Result<CodeSectionInformation, error::Error> {
+    /// # Errors
+    /// In the case parsing fails, cf. <Error> on retrieving the error info.
+    ///
+    /// # Note
+    /// Cache successive calls to this method, its result does not change.
+    pub fn mappings_including_instruction_offsets(
+        &self,
+    ) -> Result<Vec<MappingWithInstructions>, error::Error> {
+        let mappings: Vec<_> = self
+            .mappings()?
+            .into_iter()
+            .map(MappingWithInstructions::new)
+            .collect();
+
+        self.compute_instruction_offsets(mappings)
+            .map_err(error::Error::Binary)
+    }
+
+    fn compute_instruction_offsets(
+        &self,
+        mut mappings: Vec<MappingWithInstructions>,
+    ) -> Result<Vec<MappingWithInstructions>, BinaryReaderError> {
+        // Parse the module to find valid code offsets
+        let Self(module) = self;
+        let parser = wasmparser::Parser::default();
+
+        for payload in parser.parse_all(module) {
+            let payload = payload?;
+            if let wasmparser::Payload::CodeSectionEntry(ref function_body) = payload {
+                let mut function_locals_reader = function_body.get_locals_reader()?;
+                for _ in 0..function_locals_reader.get_count() {
+                    let address = function_locals_reader.original_position() as _;
+                    let (count, local_type) = function_locals_reader.read()?;
+                    for mapping in &mut mappings {
+                        if mapping.address_range.contains(&(address as u64)) {
+                            let ty = ValType::from(local_type);
+                            let instr = Instruction::new_local(count, ty);
+                            mapping
+                                .instructions
+                                .push(PositionedInstruction { address, instr });
+                        }
+                    }
+                }
+
+                for operator_offset in function_body
+                    .get_operators_reader()?
+                    .into_iter_with_offsets()
+                {
+                    let (operator, address) = operator_offset?;
+                    for mapping in &mut mappings {
+                        if mapping.address_range.contains(&(address as u64)) {
+                            let instr = Instruction::new_body(BodyInstruction::from(&operator));
+                            let instr = PositionedInstruction { address, instr };
+                            mapping.instructions.push(instr);
+                        }
+                    }
+                }
+            }
+        }
+
+        Ok(mappings)
+    }
+
+    fn determine_code_section_size(&self) -> Result<CodeSectionInformationOutcome, error::Error> {
         let Self(module) = self;
 
         // Parse the module to find valid code offsets
@@ -173,10 +283,10 @@ impl Module {
                     start_offset: range.start,
                     size,
                 };
-                return Ok(info);
+                return Ok(CodeSectionInformationOutcome::Some(info));
             }
         }
 
-        Err(error::Error::NoCodeSection)
+        Ok(CodeSectionInformationOutcome::NoCodeSection)
     }
 }

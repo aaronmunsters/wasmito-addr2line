@@ -1,0 +1,486 @@
+{
+  "wasm": "/Users/crojcas/Documents/projects/mcu-examples/mplr-demo/as-dim-led/wasm/dim.wasm",
+  "sources": [
+    "/Users/crojcas/Documents/projects/mcu-examples/mplr-demo/as-dim-led/src/arduino.ts",
+    "/Users/crojcas/Documents/projects/mcu-examples/mplr-demo/as-dim-led/src/dim.ts"
+  ],
+  "mappings": [
+    {
+      "source": "/Users/crojcas/Documents/projects/mcu-examples/mplr-demo/as-dim-led/src/arduino.ts",
+      "address": 350,
+      "linenr": 37,
+      "colnr": 21,
+      "name": ""
+    },
+    {
+      "source": "/Users/crojcas/Documents/projects/mcu-examples/mplr-demo/as-dim-led/src/arduino.ts",
+      "address": 352,
+      "linenr": 37,
+      "colnr": 30,
+      "name": ""
+    },
+    {
+      "source": "/Users/crojcas/Documents/projects/mcu-examples/mplr-demo/as-dim-led/src/arduino.ts",
+      "address": 355,
+      "linenr": 37,
+      "colnr": 36,
+      "name": ""
+    },
+    {
+      "source": "/Users/crojcas/Documents/projects/mcu-examples/mplr-demo/as-dim-led/src/arduino.ts",
+      "address": 357,
+      "linenr": 37,
+      "colnr": 5,
+      "name": ""
+    },
+    {
+      "source": "/Users/crojcas/Documents/projects/mcu-examples/mplr-demo/as-dim-led/src/arduino.ts",
+      "address": 364,
+      "linenr": 38,
+      "colnr": 26,
+      "name": ""
+    },
+    {
+      "source": "/Users/crojcas/Documents/projects/mcu-examples/mplr-demo/as-dim-led/src/arduino.ts",
+      "address": 365,
+      "linenr": 38,
+      "colnr": 31,
+      "name": ""
+    },
+    {
+      "source": "/Users/crojcas/Documents/projects/mcu-examples/mplr-demo/as-dim-led/src/arduino.ts",
+      "address": 367,
+      "linenr": 38,
+      "colnr": 5,
+      "name": ""
+    },
+    {
+      "source": "/Users/crojcas/Documents/projects/mcu-examples/mplr-demo/as-dim-led/src/arduino.ts",
+      "address": 372,
+      "linenr": 13,
+      "colnr": 19,
+      "name": ""
+    },
+    {
+      "source": "/Users/crojcas/Documents/projects/mcu-examples/mplr-demo/as-dim-led/src/arduino.ts",
+      "address": 374,
+      "linenr": 13,
+      "colnr": 24,
+      "name": ""
+    },
+    {
+      "source": "/Users/crojcas/Documents/projects/mcu-examples/mplr-demo/as-dim-led/src/arduino.ts",
+      "address": 376,
+      "linenr": 13,
+      "colnr": 5,
+      "name": ""
+    },
+    {
+      "source": "/Users/crojcas/Documents/projects/mcu-examples/mplr-demo/as-dim-led/src/dim.ts",
+      "address": 381,
+      "linenr": 23,
+      "colnr": 13,
+      "name": ""
+    },
+    {
+      "source": "/Users/crojcas/Documents/projects/mcu-examples/mplr-demo/as-dim-led/src/dim.ts",
+      "address": 384,
+      "linenr": 23,
+      "colnr": 5,
+      "name": ""
+    },
+    {
+      "source": "/Users/crojcas/Documents/projects/mcu-examples/mplr-demo/as-dim-led/src/dim.ts",
+      "address": 398,
+      "linenr": 19,
+      "colnr": 13,
+      "name": ""
+    },
+    {
+      "source": "/Users/crojcas/Documents/projects/mcu-examples/mplr-demo/as-dim-led/src/dim.ts",
+      "address": 401,
+      "linenr": 19,
+      "colnr": 5,
+      "name": ""
+    },
+    {
+      "source": "/Users/crojcas/Documents/projects/mcu-examples/mplr-demo/as-dim-led/src/arduino.ts",
+      "address": 406,
+      "linenr": 44,
+      "colnr": 24,
+      "name": ""
+    },
+    {
+      "source": "/Users/crojcas/Documents/projects/mcu-examples/mplr-demo/as-dim-led/src/arduino.ts",
+      "address": 413,
+      "linenr": 44,
+      "colnr": 33,
+      "name": ""
+    },
+    {
+      "source": "/Users/crojcas/Documents/projects/mcu-examples/mplr-demo/as-dim-led/src/arduino.ts",
+      "address": 414,
+      "linenr": 44,
+      "colnr": 47,
+      "name": ""
+    },
+    {
+      "source": "/Users/crojcas/Documents/projects/mcu-examples/mplr-demo/as-dim-led/src/arduino.ts",
+      "address": 417,
+      "linenr": 44,
+      "colnr": 5,
+      "name": ""
+    },
+    {
+      "source": "/Users/crojcas/Documents/projects/mcu-examples/mplr-demo/as-dim-led/src/arduino.ts",
+      "address": 422,
+      "linenr": 25,
+      "colnr": 16,
+      "name": ""
+    },
+    {
+      "source": "/Users/crojcas/Documents/projects/mcu-examples/mplr-demo/as-dim-led/src/arduino.ts",
+      "address": 424,
+      "linenr": 25,
+      "colnr": 5,
+      "name": ""
+    },
+    {
+      "source": "/Users/crojcas/Documents/projects/mcu-examples/mplr-demo/as-dim-led/src/dim.ts",
+      "address": 431,
+      "linenr": 30,
+      "colnr": 27,
+      "name": ""
+    },
+    {
+      "source": "/Users/crojcas/Documents/projects/mcu-examples/mplr-demo/as-dim-led/src/dim.ts",
+      "address": 434,
+      "linenr": 30,
+      "colnr": 5,
+      "name": ""
+    },
+    {
+      "source": "/Users/crojcas/Documents/projects/mcu-examples/mplr-demo/as-dim-led/src/dim.ts",
+      "address": 436,
+      "linenr": 33,
+      "colnr": 5,
+      "name": ""
+    },
+    {
+      "source": "/Users/crojcas/Documents/projects/mcu-examples/mplr-demo/as-dim-led/src/dim.ts",
+      "address": 438,
+      "linenr": 35,
+      "colnr": 5,
+      "name": ""
+    },
+    {
+      "source": "/Users/crojcas/Documents/projects/mcu-examples/mplr-demo/as-dim-led/src/dim.ts",
+      "address": 442,
+      "linenr": 35,
+      "colnr": 11,
+      "name": ""
+    },
+    {
+      "source": "/Users/crojcas/Documents/projects/mcu-examples/mplr-demo/as-dim-led/src/dim.ts",
+      "address": 446,
+      "linenr": 36,
+      "colnr": 9,
+      "name": ""
+    },
+    {
+      "source": "/Users/crojcas/Documents/projects/mcu-examples/mplr-demo/as-dim-led/src/dim.ts",
+      "address": 448,
+      "linenr": 36,
+      "colnr": 23,
+      "name": ""
+    },
+    {
+      "source": "/Users/crojcas/Documents/projects/mcu-examples/mplr-demo/as-dim-led/src/dim.ts",
+      "address": 451,
+      "linenr": 36,
+      "colnr": 9,
+      "name": ""
+    },
+    {
+      "source": "/Users/crojcas/Documents/projects/mcu-examples/mplr-demo/as-dim-led/src/dim.ts",
+      "address": 453,
+      "linenr": 37,
+      "colnr": 12,
+      "name": ""
+    },
+    {
+      "source": "/Users/crojcas/Documents/projects/mcu-examples/mplr-demo/as-dim-led/src/dim.ts",
+      "address": 455,
+      "linenr": 37,
+      "colnr": 25,
+      "name": ""
+    },
+    {
+      "source": "/Users/crojcas/Documents/projects/mcu-examples/mplr-demo/as-dim-led/src/dim.ts",
+      "address": 458,
+      "linenr": 37,
+      "colnr": 12,
+      "name": ""
+    },
+    {
+      "source": "/Users/crojcas/Documents/projects/mcu-examples/mplr-demo/as-dim-led/src/dim.ts",
+      "address": 459,
+      "linenr": 37,
+      "colnr": 9,
+      "name": ""
+    },
+    {
+      "source": "/Users/crojcas/Documents/projects/mcu-examples/mplr-demo/as-dim-led/src/dim.ts",
+      "address": 461,
+      "linenr": 38,
+      "colnr": 24,
+      "name": ""
+    },
+    {
+      "source": "/Users/crojcas/Documents/projects/mcu-examples/mplr-demo/as-dim-led/src/dim.ts",
+      "address": 464,
+      "linenr": 38,
+      "colnr": 11,
+      "name": ""
+    },
+    {
+      "source": "/Users/crojcas/Documents/projects/mcu-examples/mplr-demo/as-dim-led/src/dim.ts",
+      "address": 467,
+      "linenr": 41,
+      "colnr": 13,
+      "name": ""
+    },
+    {
+      "source": "/Users/crojcas/Documents/projects/mcu-examples/mplr-demo/as-dim-led/src/dim.ts",
+      "address": 469,
+      "linenr": 41,
+      "colnr": 26,
+      "name": ""
+    },
+    {
+      "source": "/Users/crojcas/Documents/projects/mcu-examples/mplr-demo/as-dim-led/src/dim.ts",
+      "address": 471,
+      "linenr": 41,
+      "colnr": 13,
+      "name": ""
+    },
+    {
+      "source": "/Users/crojcas/Documents/projects/mcu-examples/mplr-demo/as-dim-led/src/dim.ts",
+      "address": 472,
+      "linenr": 41,
+      "colnr": 9,
+      "name": ""
+    },
+    {
+      "source": "/Users/crojcas/Documents/projects/mcu-examples/mplr-demo/as-dim-led/src/dim.ts",
+      "address": 474,
+      "linenr": 42,
+      "colnr": 24,
+      "name": ""
+    },
+    {
+      "source": "/Users/crojcas/Documents/projects/mcu-examples/mplr-demo/as-dim-led/src/dim.ts",
+      "address": 476,
+      "linenr": 42,
+      "colnr": 11,
+      "name": ""
+    },
+    {
+      "source": "/Users/crojcas/Documents/projects/mcu-examples/mplr-demo/as-dim-led/src/dim.ts",
+      "address": 479,
+      "linenr": 45,
+      "colnr": 21,
+      "name": ""
+    },
+    {
+      "source": "/Users/crojcas/Documents/projects/mcu-examples/mplr-demo/as-dim-led/src/dim.ts",
+      "address": 481,
+      "linenr": 45,
+      "colnr": 26,
+      "name": ""
+    },
+    {
+      "source": "/Users/crojcas/Documents/projects/mcu-examples/mplr-demo/as-dim-led/src/dim.ts",
+      "address": 483,
+      "linenr": 45,
+      "colnr": 9,
+      "name": ""
+    },
+    {
+      "source": "/Users/crojcas/Documents/projects/mcu-examples/mplr-demo/as-dim-led/src/dim.ts",
+      "address": 485,
+      "linenr": 46,
+      "colnr": 17,
+      "name": ""
+    },
+    {
+      "source": "/Users/crojcas/Documents/projects/mcu-examples/mplr-demo/as-dim-led/src/dim.ts",
+      "address": 487,
+      "linenr": 46,
+      "colnr": 9,
+      "name": ""
+    },
+    {
+      "source": "/Users/crojcas/Documents/projects/mcu-examples/mplr-demo/as-dim-led/src/dim.ts",
+      "address": 489,
+      "linenr": 47,
+      "colnr": 15,
+      "name": ""
+    },
+    {
+      "source": "/Users/crojcas/Documents/projects/mcu-examples/mplr-demo/as-dim-led/src/dim.ts",
+      "address": 492,
+      "linenr": 47,
+      "colnr": 9,
+      "name": ""
+    },
+    {
+      "source": "/Users/crojcas/Documents/projects/mcu-examples/mplr-demo/as-dim-led/src/arduino.ts",
+      "address": 548,
+      "linenr": 30,
+      "colnr": 25,
+      "name": ""
+    },
+    {
+      "source": "/Users/crojcas/Documents/projects/mcu-examples/mplr-demo/as-dim-led/src/arduino.ts",
+      "address": 550,
+      "linenr": 30,
+      "colnr": 30,
+      "name": ""
+    },
+    {
+      "source": "/Users/crojcas/Documents/projects/mcu-examples/mplr-demo/as-dim-led/src/arduino.ts",
+      "address": 563,
+      "linenr": 30,
+      "colnr": 30,
+      "name": ""
+    },
+    {
+      "source": "/Users/crojcas/Documents/projects/mcu-examples/mplr-demo/as-dim-led/src/arduino.ts",
+      "address": 565,
+      "linenr": 30,
+      "colnr": 40,
+      "name": ""
+    },
+    {
+      "source": "/Users/crojcas/Documents/projects/mcu-examples/mplr-demo/as-dim-led/src/arduino.ts",
+      "address": 567,
+      "linenr": 30,
+      "colnr": 5,
+      "name": ""
+    },
+    {
+      "source": "/Users/crojcas/Documents/projects/mcu-examples/mplr-demo/as-dim-led/src/dim.ts",
+      "address": 597,
+      "linenr": 9,
+      "colnr": 25,
+      "name": ""
+    },
+    {
+      "source": "/Users/crojcas/Documents/projects/mcu-examples/mplr-demo/as-dim-led/src/dim.ts",
+      "address": 599,
+      "linenr": 9,
+      "colnr": 5,
+      "name": ""
+    },
+    {
+      "source": "/Users/crojcas/Documents/projects/mcu-examples/mplr-demo/as-dim-led/src/dim.ts",
+      "address": 601,
+      "linenr": 11,
+      "colnr": 13,
+      "name": ""
+    },
+    {
+      "source": "/Users/crojcas/Documents/projects/mcu-examples/mplr-demo/as-dim-led/src/dim.ts",
+      "address": 603,
+      "linenr": 11,
+      "colnr": 22,
+      "name": ""
+    },
+    {
+      "source": "/Users/crojcas/Documents/projects/mcu-examples/mplr-demo/as-dim-led/src/dim.ts",
+      "address": 605,
+      "linenr": 11,
+      "colnr": 5,
+      "name": ""
+    },
+    {
+      "source": "/Users/crojcas/Documents/projects/mcu-examples/mplr-demo/as-dim-led/src/dim.ts",
+      "address": 607,
+      "linenr": 12,
+      "colnr": 17,
+      "name": ""
+    },
+    {
+      "source": "/Users/crojcas/Documents/projects/mcu-examples/mplr-demo/as-dim-led/src/dim.ts",
+      "address": 609,
+      "linenr": 12,
+      "colnr": 26,
+      "name": ""
+    },
+    {
+      "source": "/Users/crojcas/Documents/projects/mcu-examples/mplr-demo/as-dim-led/src/dim.ts",
+      "address": 611,
+      "linenr": 12,
+      "colnr": 35,
+      "name": ""
+    },
+    {
+      "source": "/Users/crojcas/Documents/projects/mcu-examples/mplr-demo/as-dim-led/src/dim.ts",
+      "address": 624,
+      "linenr": 12,
+      "colnr": 5,
+      "name": ""
+    },
+    {
+      "source": "/Users/crojcas/Documents/projects/mcu-examples/mplr-demo/as-dim-led/src/dim.ts",
+      "address": 626,
+      "linenr": 14,
+      "colnr": 13,
+      "name": ""
+    },
+    {
+      "source": "/Users/crojcas/Documents/projects/mcu-examples/mplr-demo/as-dim-led/src/dim.ts",
+      "address": 628,
+      "linenr": 14,
+      "colnr": 23,
+      "name": ""
+    },
+    {
+      "source": "/Users/crojcas/Documents/projects/mcu-examples/mplr-demo/as-dim-led/src/dim.ts",
+      "address": 630,
+      "linenr": 14,
+      "colnr": 5,
+      "name": ""
+    },
+    {
+      "source": "/Users/crojcas/Documents/projects/mcu-examples/mplr-demo/as-dim-led/src/dim.ts",
+      "address": 632,
+      "linenr": 15,
+      "colnr": 17,
+      "name": ""
+    },
+    {
+      "source": "/Users/crojcas/Documents/projects/mcu-examples/mplr-demo/as-dim-led/src/dim.ts",
+      "address": 634,
+      "linenr": 15,
+      "colnr": 27,
+      "name": ""
+    },
+    {
+      "source": "/Users/crojcas/Documents/projects/mcu-examples/mplr-demo/as-dim-led/src/dim.ts",
+      "address": 636,
+      "linenr": 15,
+      "colnr": 35,
+      "name": ""
+    },
+    {
+      "source": "/Users/crojcas/Documents/projects/mcu-examples/mplr-demo/as-dim-led/src/dim.ts",
+      "address": 650,
+      "linenr": 15,
+      "colnr": 5,
+      "name": ""
+    }
+  ]
+}
+

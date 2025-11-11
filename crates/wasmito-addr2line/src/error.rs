@@ -16,4 +16,8 @@ pub enum Error {
     FindTextOffset2(Box<str>),
     #[error("No code section found.")]
     NoCodeSection,
+    #[error("Binary Reader Error: {0}")]
+    Binary(wasmparser::BinaryReaderError),
+    #[error("Cast Error: {0}")]
+    Cast(std::num::TryFromIntError),
 }

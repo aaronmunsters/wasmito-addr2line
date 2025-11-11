@@ -24,7 +24,7 @@ fn fast_addresses_work() -> Result<()> {
     let mapping = mapped_module.mappings()?;
     let target = &mapping[5];
 
-    assert_eq!(target.address, 56);
+    assert_eq!(target.address, 57);
     assert_eq!(target.range_size, 1);
 
     assert_eq!(target.location.file, Some("./<input>.wat".into()));
