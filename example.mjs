@@ -30,7 +30,7 @@ for (let index; index < 4; index++) {
 
 const mappings = wasm_module.addr2line_mappings();
 
-console.assert(mappings[5].address === BigInt(56));
+console.assert(mappings[5].address === BigInt(57));
 console.assert(mappings[5].range_size === BigInt(1));
 console.assert(mappings[5].file === "./<input>.wat");
 console.assert(mappings[5].line === 11);
