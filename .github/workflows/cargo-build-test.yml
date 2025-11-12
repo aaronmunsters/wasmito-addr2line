@@ -1,84 +1,69 @@
-name: Rust - Cargo Build, Test & Clippy
+name: Rust CI
 
 on:
   push:
     branches: "*"
   pull_request:
-    branches: [ "main" ]
+    branches: [main]
 
 env:
   CARGO_TERM_COLOR: always
   RUSTFLAGS: "-Dwarnings"
 
 jobs:
-  pre-commit-hooks:
+  pre-commit:
+    name: Pre-commit Checks
     runs-on: ubuntu-latest
     steps:
-      - name: Checking out code from GitHub
-        uses: actions/checkout@v4
-      - name: Set up Python
-        uses: actions/setup-python@v5
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
         with:
           python-version: '3.13'
-      - name: Install pre-commit
+      - uses: taiki-e/install-action@nextest
+      - run: cargo install wasm-tools
+      - name: Run pre-commit on all files
         run: |
           pip install pre-commit
           pre-commit --version
-      - name: Install latest nextest release
-        uses: taiki-e/install-action@nextest
-      - name: Install wasm-tools
-        run: cargo install wasm-tools
-      - name: Run pre-commit on all files
-        run: |
           pre-commit run --all-files --show-diff-on-failure
 
-  build_test:
-    needs: pre-commit-hooks
+  build-test:
+    name: Build & Test
+    needs: pre-commit
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Setup Rust
-        uses: dtolnay/rust-toolchain@stable
+      - uses: dtolnay/rust-toolchain@stable
         with:
           targets: wasm32-unknown-unknown
-      - name: Install wasm-tools
-        run: cargo install wasm-tools
-      - name: Build all targets with all features
-        run: cargo build
-        shell: bash
-      - name: Install latest nextest release
-        uses: taiki-e/install-action@nextest
-      - name: Test with latest nextest release
-        run: cargo nextest run --all-features
+      - uses: taiki-e/install-action@nextest
+      - run: cargo install wasm-tools
+      - run: cargo build --all-features
+      - run: cargo nextest run --all-features
 
-  nodejs_test:
-    needs: pre-commit-hooks
+  nodejs-test:
+    name: NodeJS Integration
+    needs: pre-commit
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Setup Rust
-        uses: dtolnay/rust-toolchain@stable
+      - uses: dtolnay/rust-toolchain@stable
         with:
           targets: wasm32-unknown-unknown
-      - name: Install cargo-binstall
-        uses: cargo-bins/cargo-binstall@main
-      - name: Install wasm-pack
-        run: cargo binstall wasm-pack --no-confirm
-      - name: Build with wasm-pack
-        run: bash ./package.sh
-      - name: run example.mjs
-        run: node example.mjs
+      - uses: cargo-bins/cargo-binstall@main
+      - run: |
+          cargo binstall wasm-pack --no-confirm
+          bash ./package.sh
+          node example.mjs
 
-  clippy_check:
-    needs: pre-commit-hooks
+  clippy:
+    name: Lint (Clippy)
+    needs: pre-commit
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Setup Rust
-        uses: dtolnay/rust-toolchain@stable
+      - uses: dtolnay/rust-toolchain@stable
         with:
           components: clippy
           targets: wasm32-unknown-unknown
-      - name: Lint (clippy)
-        run: cargo clippy --all-features --all-targets
-        shell: bash
+      - run: cargo clippy --all-features --all-targets
