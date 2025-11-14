@@ -26,3 +26,7 @@ const stripped = new StripConfig(true, []).strip(wasm_module.bytes);
 
 See [example.mjs](./example.mjs) for example assertions you can make use of.
 In fact, you can `bash ./package.sh` and then `node example.mjs` to run that example file directly!
+
+# TODO:
+
+- Merge the error kinds into some generic type with the same `.context()` method.
