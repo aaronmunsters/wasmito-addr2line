@@ -9,6 +9,7 @@ on:
 env:
   CARGO_TERM_COLOR: always
   RUSTFLAGS: "-Dwarnings"
+  RUSTDOCFLAGS: "-Dwarnings"
 
 jobs:
   pre-commit:
@@ -54,3 +55,12 @@ jobs:
           components: clippy
           targets: wasm32-unknown-unknown
       - run: cargo clippy --all-features --all-targets
+
+  docs:
+    name: Docs (Cargo)
+    needs: pre-commit
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - run: cargo doc --no-deps --all-features

@@ -104,7 +104,7 @@ impl Module {
     }
 
     /// # Errors
-    /// In the case parsing fails, cf. <Error> on retrieving the error info.
+    /// In the case parsing fails, cf. [`error::WatParseError`] on retrieving the error info.
     pub fn from_wat(path: Option<&Path>, wat: &str) -> Result<Self, error::WatParseError> {
         // Configure new parser with Dwarf support
         let mut parser = Parser::new();
@@ -119,7 +119,7 @@ impl Module {
     }
 
     /// # Errors
-    /// In the case parsing fails, cf. <Error> on retrieving the error info.
+    /// In the case parsing fails, cf. [`error::Error`] on retrieving the error info.
     ///
     /// # Note
     /// Cache successive calls to this method, its result does not change.
@@ -144,7 +144,7 @@ impl Module {
     }
 
     /// # Errors
-    /// In the case parsing fails, cf. <Error> on retrieving the error info.
+    /// In the case parsing fails, cf. [`error::Error`] on retrieving the error info.
     ///
     /// # Note
     /// Cache successive calls to this method, its result does not change.
@@ -193,7 +193,7 @@ impl Module {
     /// Retrieves the source files that were used during compilation.
     ///
     /// # Errors
-    /// In the case parsing fails, cf. <Error> on retrieving the error info.
+    /// In the case parsing fails, cf. [`error::Error`] on retrieving the error info.
     ///
     /// # Note
     /// Cache successive calls to this method, its result does not change.
@@ -207,7 +207,7 @@ impl Module {
     }
 
     /// # Errors
-    /// In the case parsing fails, cf. <Error> on retrieving the error info.
+    /// In the case parsing fails, cf. [`error::Error`] on retrieving the error info.
     ///
     /// # Note
     /// Cache successive calls to this method, its result does not change.

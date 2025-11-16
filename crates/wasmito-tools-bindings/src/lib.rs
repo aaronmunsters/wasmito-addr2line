@@ -172,7 +172,7 @@ impl Module {
     }
 
     /// # Errors
-    /// In the case parsing fails, cf. <Error> on retrieving the error info.
+    /// In the case parsing fails, cf. [`ParseError`] on retrieving the error info.
     #[allow(clippy::needless_pass_by_value)] // reason: wasm_bindgen + lifetimes
     pub fn from_wat(path: Option<String>, wat: &str) -> Result<Self, ParseError> {
         let module = CoreModule::from_wat(path.as_deref().map(PathBuf::from).as_deref(), wat)
@@ -181,7 +181,7 @@ impl Module {
     }
 
     /// # Errors
-    /// In the case mapping fails, cf. <Error> on retrieving the error info.
+    /// In the case mapping fails, cf. [`Addr2lineError`] on retrieving the error info.
     ///
     /// # Note
     /// Cache successive calls to this method, its result does not change.
@@ -194,7 +194,7 @@ impl Module {
     }
 
     /// # Errors
-    /// In the case mapping fails, cf. <Error> on retrieving the error info.
+    /// In the case mapping fails, cf. [`Addr2lineError`] on retrieving the error info.
     ///
     /// # Note
     /// Cache successive calls to this method, its result does not change.
@@ -205,7 +205,7 @@ impl Module {
     }
 
     /// # Errors
-    /// In the case mapping fails, cf. <Error> on retrieving the error info.
+    /// In the case mapping fails, cf. [`Addr2lineError`] on retrieving the error info.
     ///
     /// # Note
     /// Cache successive calls to this method, its result does not change.
@@ -218,7 +218,7 @@ impl Module {
     }
 
     /// # Errors
-    /// In the case mapping fails, cf. <Error> on retrieving the error info.
+    /// In the case mapping fails, cf. [`Addr2lineError`] on retrieving the error info.
     ///
     /// # Note
     /// Cache successive calls to this method, its result does not change.
@@ -260,7 +260,7 @@ impl StripConfig {
     }
 
     /// # Errors
-    /// In the case parsing fails, cf. <Error> on retrieving the error info.
+    /// In the case parsing fails, cf. [`StripError`] on retrieving the error info.
     pub fn strip(&self, module: Vec<u8>) -> Result<Vec<u8>, StripError> {
         let Self(config) = self;
         config.strip(module).map_err(StripError)
