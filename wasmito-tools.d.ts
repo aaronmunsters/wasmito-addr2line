@@ -40,7 +40,7 @@ export class Module {
   [Symbol.dispose](): void;
   /**
    * # Errors
-   * In the case mapping fails, cf. <Error> on retrieving the error info.
+   * In the case mapping fails, cf. [`Addr2lineError`] on retrieving the error info.
    *
    * # Note
    * Cache successive calls to this method, its result does not change.
@@ -48,7 +48,7 @@ export class Module {
   addr2line_mappings(): Mapping[];
   /**
    * # Errors
-   * In the case mapping fails, cf. <Error> on retrieving the error info.
+   * In the case mapping fails, cf. [`Addr2lineError`] on retrieving the error info.
    *
    * # Note
    * Cache successive calls to this method, its result does not change.
@@ -58,7 +58,7 @@ export class Module {
   bytes(): Uint8Array;
   /**
    * # Errors
-   * In the case mapping fails, cf. <Error> on retrieving the error info.
+   * In the case mapping fails, cf. [`Addr2lineError`] on retrieving the error info.
    *
    * # Note
    * Cache successive calls to this method, its result does not change.
@@ -66,12 +66,12 @@ export class Module {
   files(): string[];
   /**
    * # Errors
-   * In the case parsing fails, cf. <Error> on retrieving the error info.
+   * In the case parsing fails, cf. [`ParseError`] on retrieving the error info.
    */
   static from_wat(path: string | null | undefined, wat: string): Module;
   /**
    * # Errors
-   * In the case mapping fails, cf. <Error> on retrieving the error info.
+   * In the case mapping fails, cf. [`Addr2lineError`] on retrieving the error info.
    *
    * # Note
    * Cache successive calls to this method, its result does not change.
@@ -97,7 +97,7 @@ export class StripConfig {
   constructor(all: boolean, to_delete: string[]);
   /**
    * # Errors
-   * In the case parsing fails, cf. <Error> on retrieving the error info.
+   * In the case parsing fails, cf. [`StripError`] on retrieving the error info.
    */
   strip(module: Uint8Array): Uint8Array;
 }

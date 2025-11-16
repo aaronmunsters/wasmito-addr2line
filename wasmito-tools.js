@@ -556,7 +556,7 @@ class Module {
     }
     /**
      * # Errors
-     * In the case mapping fails, cf. <Error> on retrieving the error info.
+     * In the case mapping fails, cf. [`Addr2lineError`] on retrieving the error info.
      *
      * # Note
      * Cache successive calls to this method, its result does not change.
@@ -575,7 +575,7 @@ class Module {
     }
     /**
      * # Errors
-     * In the case mapping fails, cf. <Error> on retrieving the error info.
+     * In the case mapping fails, cf. [`Addr2lineError`] on retrieving the error info.
      *
      * # Note
      * Cache successive calls to this method, its result does not change.
@@ -616,7 +616,7 @@ class Module {
     }
     /**
      * # Errors
-     * In the case mapping fails, cf. <Error> on retrieving the error info.
+     * In the case mapping fails, cf. [`Addr2lineError`] on retrieving the error info.
      *
      * # Note
      * Cache successive calls to this method, its result does not change.
@@ -635,7 +635,7 @@ class Module {
     }
     /**
      * # Errors
-     * In the case parsing fails, cf. <Error> on retrieving the error info.
+     * In the case parsing fails, cf. [`ParseError`] on retrieving the error info.
      * @param {string | null | undefined} path
      * @param {string} wat
      * @returns {Module}
@@ -653,7 +653,7 @@ class Module {
     }
     /**
      * # Errors
-     * In the case mapping fails, cf. <Error> on retrieving the error info.
+     * In the case mapping fails, cf. [`Addr2lineError`] on retrieving the error info.
      *
      * # Note
      * Cache successive calls to this method, its result does not change.
@@ -818,7 +818,7 @@ class StripConfig {
     }
     /**
      * # Errors
-     * In the case parsing fails, cf. <Error> on retrieving the error info.
+     * In the case parsing fails, cf. [`StripError`] on retrieving the error info.
      * @param {Uint8Array} module
      * @returns {Uint8Array}
      */
